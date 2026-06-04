@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 19th Birthday Dito! 🎉</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #eef2f3, #8e9eab);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Tombol Start (Agar musik bisa berputar otomatis) */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease;
+        }
+
+        .start-btn {
+            background: #2b5876;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(43, 88, 118, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Card Ucapan Utama */
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .badge {
+            background: #e0e7ff;
+            color: #4f46e5;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+
+        .nama {
+            color: #2b5876;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .ucapan {
+            color: #5a6c7d;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Tombol Kejutan */
+        .btn-kejutan {
+            background: linear-gradient(to right, #2b5876, #4e4376);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(43, 88, 118, 0.3);
+        }
+
+        .btn-kejutan:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(43, 88, 118, 0.4);
+        }
+
+        /* Pesan Rahasia */
+        .pesan-tni {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #f4f7f6;
+            border-left: 4px solid #2b5876;
+            border-radius: 8px;
+            color: #334e68;
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Dekorasi Konfeti Lingkaran */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #2b5876;
+            border-radius: 50%;
+            top: -10px;
+            opacity: 0.6;
+            animation: jatuh 7s infinite linear;
+        }
+
+        @keyframes jatuh {
+            0% { top: -10px; transform: translateX(0); }
+            100% { top: 100vh; transform: translateX(100px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Efek Dekorasi Konfeti Santai -->
+    <div class="confetti" style="left: 15%; background: #2b5876; animation-delay: 0s;"></div>
+    <div class="confetti" style="left: 40%; background: #4e4376; animation-delay: 2s; animation-duration: 5s;"></div>
+    <div class="confetti" style="left: 70%; background: #8e9eab; animation-delay: 1s; animation-duration: 8s;"></div>
+    <div class="confetti" style="left: 85%; background: #2b5876; animation-delay: 3s; animation-duration: 6s;"></div>
+
+    <!-- Tombol Pembuka Web -->
+    <div id="welcome-screen">
+        <button class="start-btn" onclick="mulaiWeb()">Buka Ucapan ✨</button>
+    </div>
+
+    <!-- Konten Utama -->
+    <div class="card" id="birthday-card">
+        <div class="badge">Selamat Ulang Ke-19</div>
+        <h1>Happy Birthday</h1>
+        <div class="nama">M. Dito Rahmadiansyah</div>
+        
+        <p class="ucapan">
+            Selamat memasuki usia 19 tahun! Semoga di usia yang baru ini kamu selalu diberikan kesehatan, kelancaran dalam segala urusan, dan kebahagiaan yang berlimpah. Teruslah bertumbuh menjadi pribadi yang hebat, konsisten, dan membanggakan bagi orang tua serta sekitarmu.
+        </p>
+        
+        <button class="btn-kejutan" onclick="tampilkanPesan()">Klik di Sini 🎁</button>
+        
+        <!-- Pesan Cita-Cita TNI -->
+        <div id="pesanKhusus" class="pesan-tni">
+            <strong>Semangat Mengejar Impian! 🪖🇲🇨</strong><br>
+            Semoga segala persiapan, usaha, dan doa kamu untuk menjadi seorang prajurit <strong>TNI</strong> dimudahkan dan dilancarkan jalannya. Tetap jaga fisik, kuatkan mental, dan jangan pernah menyerah sebelum tujuanmu tercapai! Sukses selalu, Dito!
+        </div>
+    </div>
+
+    <!-- Lagu Background (Menggunakan instrumental santai bebas royalti) -->
+    <audio id="lagu" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        function mulaiWeb() {
+            // Sembunyikan tombol pembuka
+            const welcome = document.getElementById('welcome-screen');
+            welcome.style.opacity = '0';
+            setTimeout(() => {
+                welcome.style.display = 'none';
+                // Munculkan card utama
+                document.getElementById('birthday-card').classList.add('show');
+            }, 800);
+
+            // Putar lagu
+            const lagu = document.getElementById('lagu');
+            lagu.volume = 0.3;
+            lagu.play();
+        }
+
+        function tampilkanPesan() {
+            const pesan = document.getElementById('pesanKhusus');
+            if (pesan.style.display === 'block') {
+                pesan.style.display = 'none';
+            } else {
+                pesan.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
